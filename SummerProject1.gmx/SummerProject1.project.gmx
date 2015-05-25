@@ -8,13 +8,19 @@
   <sprites name="sprites">
     <sprite>sprites\s_Square</sprite>
     <sprite>sprites\s_Box</sprite>
+    <sprite>sprites\s_Triangle</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
+  <scripts name="scripts">
+    <script>scripts\scr_AI_step.gml</script>
+    <script>scripts\scr_Player_move.gml</script>
+  </scripts>
   <objects name="objects">
     <object>objects\Player</object>
     <object>objects\Control</object>
-    <object>objects\Tree</object>
+    <object>objects\Solid</object>
+    <object>objects\Wolf</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room0</room>
