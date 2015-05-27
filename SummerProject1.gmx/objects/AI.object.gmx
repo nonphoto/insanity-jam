@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>&lt;undefined&gt;</parentName>
+  <parentName>Entity</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -74,7 +74,7 @@
             <string>if(move_can == 1){
     script_execute(scr_AI_step)
     move_can = 0
-    alarm[0]= 30
+    alarm[0]= 60
 }
 </string>
           </argument>
