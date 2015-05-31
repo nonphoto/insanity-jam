@@ -10,12 +10,15 @@
     <sprite>sprites\s_Box</sprite>
     <sprite>sprites\s_Triangle</sprite>
     <sprite>sprites\s_Cross</sprite>
+    <sprite>sprites\s_diamond</sprite>
   </sprites>
-  <backgrounds name="background"/>
+  <backgrounds name="background">
+    <background>background\background0</background>
+  </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
+    <script>scripts\scr_player_move.gml</script>
     <script>scripts\scr_AI_step.gml</script>
-    <script>scripts\scr_Player_move.gml</script>
     <script>scripts\scr_inventory_create.gml</script>
   </scripts>
   <objects name="objects">
@@ -25,6 +28,8 @@
     <object>objects\AI</object>
     <object>objects\Item</object>
     <object>objects\Entity</object>
+    <object>objects\City</object>
+    <object>objects\GUI</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room0</room>

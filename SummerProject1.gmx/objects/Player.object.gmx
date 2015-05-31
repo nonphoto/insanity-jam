@@ -30,9 +30,15 @@ move_time  = 30
 move_speed = 32
 move_xto = x
 move_yto = y
+
+face_direction = 0 
+collide = noone
+
+attack_time = 60
 yy = 0
 xx = 0
 
+city_enter = 0
 script_execute(scr_inventory_create)
 
 </string>
@@ -81,9 +87,16 @@ script_execute(scr_inventory_create)
           <argument>
             <kind>1</kind>
             <string>if(action_can == 1){
-    script_execute(scr_Player_move)
-    alarm[0] = move_time
+    script_execute(scr_player_move)
 }
+
+if(keyboard_check_pressed(vk_escape)){
+    city_enter = 0
+}
+
+
+
+
 /*
 if(x != move_xto){
     x += -sign(xx - move_xto) * move_speed
@@ -96,6 +109,53 @@ if(y != move_yto){
         y = move_yto  
 }
 */
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="City">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>city_enter = 'city'
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="Entity">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>x = xprevious
+y = yprevious
 </string>
           </argument>
         </arguments>
@@ -122,6 +182,29 @@ if(y != move_yto){
     instance_destroy()
 }
 ds_list_add(inventory,'Item')
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="AI">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>other.counter_hp --
 </string>
           </argument>
         </arguments>
