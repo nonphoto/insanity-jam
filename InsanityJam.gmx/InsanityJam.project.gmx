@@ -10,6 +10,7 @@
     <sprite>sprites\sprite1</sprite>
     <sprite>sprites\sprite2</sprite>
     <sprite>sprites\sprite3</sprite>
+    <sprite>sprites\sprite4</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -18,6 +19,7 @@
     <script>scripts\logic_hit.gml</script>
     <script>scripts\function_step.gml</script>
     <script>scripts\function_turn_right.gml</script>
+    <script>scripts\trace.gml</script>
   </scripts>
   <objects name="objects">
     <object>objects\Wall</object>
@@ -25,6 +27,7 @@
     <object>objects\Code</object>
     <object>objects\Code2</object>
     <object>objects\Drone</object>
+    <object>objects\Control</object>
   </objects>
   <timelines name="timelines">
     <timeline>timelines\timeline0</timeline>
