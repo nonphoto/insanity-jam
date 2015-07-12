@@ -13,13 +13,13 @@
   <backgrounds name="background"/>
   <paths name="paths"/>
   <scripts name="scripts">
-    <script>scripts\logic.gml</script>
-    <script>scripts\function.gml</script>
+    <script>scripts\scr_logic.gml</script>
+    <script>scripts\scr_function.gml</script>
   </scripts>
   <objects name="objects">
     <object>objects\Wall</object>
     <object>objects\Player</object>
-    <object>objects\Monster</object>
+    <object>objects\Drone</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room0</room>
