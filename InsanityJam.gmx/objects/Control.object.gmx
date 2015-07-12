@@ -54,10 +54,10 @@ trace("starting")
 
 for (i = 0; i &lt; array_length_1d(logic); i++) {
     trace(i)
-    draw_rectangle(5, 100 + (i * 25), 25, 100 + (i * 25) + 20, logic[i])
+    draw_rectangle(5, 100 + (i * 25), 25, 100 + (i * 25) + 20, !logic[i])
 }
 for (i = 0; i &lt; array_length_1d(function); i++) {
-    draw_rectangle(30, 100 + (i * 25), 50, 100 + (i * 25) + 20, function[i])
+    draw_rectangle(30, 100 + (i * 25), 50, 100 + (i * 25) + 20, !function[i])
 }       
 </string>
           </argument>
