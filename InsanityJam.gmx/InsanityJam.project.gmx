@@ -9,18 +9,26 @@
     <sprite>sprites\sprite0</sprite>
     <sprite>sprites\sprite1</sprite>
     <sprite>sprites\sprite2</sprite>
+    <sprite>sprites\sprite3</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
   <scripts name="scripts">
-    <script>scripts\scr_logic.gml</script>
-    <script>scripts\scr_function.gml</script>
+    <script>scripts\logic_open.gml</script>
+    <script>scripts\logic_hit.gml</script>
+    <script>scripts\function_step.gml</script>
+    <script>scripts\function_turn_right.gml</script>
   </scripts>
   <objects name="objects">
     <object>objects\Wall</object>
     <object>objects\Player</object>
+    <object>objects\Code</object>
+    <object>objects\Code2</object>
     <object>objects\Drone</object>
   </objects>
+  <timelines name="timelines">
+    <timeline>timelines\timeline0</timeline>
+  </timelines>
   <rooms name="rooms">
     <room>rooms\room0</room>
   </rooms>
