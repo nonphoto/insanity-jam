@@ -11,6 +11,10 @@
     <sprite>sprites\sprite2</sprite>
     <sprite>sprites\sprite3</sprite>
     <sprite>sprites\sprite4</sprite>
+    <sprite>sprites\sprite5</sprite>
+    <sprite>sprites\sprite6</sprite>
+    <sprite>sprites\sprite7</sprite>
+    <sprite>sprites\sprite8</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -28,6 +32,8 @@
     <object>objects\Code2</object>
     <object>objects\Drone</object>
     <object>objects\Control</object>
+    <object>objects\P1Spawn</object>
+    <object>objects\D1Spawn</object>
   </objects>
   <timelines name="timelines">
     <timeline>timelines\timeline0</timeline>
