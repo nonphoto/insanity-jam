@@ -28,6 +28,10 @@
             <string>logic[0] = logic_open
 function[0] = function_step
 
+// logic[0] evaluates to 0 for some reason? I assume this is the problem
+trace("!!!!!!!!!!!!!!!")
+trace(logic[0])
+
 
 direction = 0
 activated = 1
@@ -54,7 +58,7 @@ activated = 1
           <argument>
             <kind>1</kind>
             <string>
-if(collision_line(x,y,Player.x,Player.y,Wall,true,true)){
+if(collision_line(x,y,player.x,player.y,Wall,true,true)){
     activated = 1
 }
 else{
@@ -65,7 +69,7 @@ else{
 if(activated == 1){
     var i;
     for(i = 0; i &lt; array_length_1d(logic); i ++){
-        if (script_execute(logic[i]) &amp;&amp; function[i] != 0) {
+        if (script_execute(logic[i]) &amp;&amp; function[i] &amp;&amp; logic[i]) {
             script_execute(function[i])
         }
     }
@@ -73,28 +77,6 @@ if(activated == 1){
 
 
 </string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="4" ename="Wall">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string></string>
           </argument>
         </arguments>
       </action>
