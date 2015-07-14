@@ -19,6 +19,7 @@
   <backgrounds name="background"/>
   <paths name="paths"/>
   <scripts name="scripts">
+    <script>scripts\dumb_script.gml</script>
     <script>scripts\logic_open.gml</script>
     <script>scripts\logic_hit.gml</script>
     <script>scripts\function_step.gml</script>

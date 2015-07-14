@@ -25,12 +25,14 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>logic[0] = logic_open
-function[0] = function_step
+            <string>logic[0] = asset_get_index("logic_open")
+function[0] = asset_get_index("function_step")
+
 
 // logic[0] evaluates to 0 for some reason? I assume this is the problem
 trace("!!!!!!!!!!!!!!!")
 trace(logic[0])
+trace(function[0])
 
 
 direction = 0
