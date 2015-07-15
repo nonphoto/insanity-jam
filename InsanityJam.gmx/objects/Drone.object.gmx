@@ -25,15 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>logic[0] = asset_get_index("logic_open")
+            <string>logic[0] = asset_get_index("logic_nothing")
 function[0] = asset_get_index("function_step")
-
-
-// logic[0] evaluates to 0 for some reason? I assume this is the problem
-trace("!!!!!!!!!!!!!!!")
-trace(logic[0])
-trace(function[0])
-
 
 direction = 0
 activated = 1
@@ -77,8 +70,32 @@ if(activated == 1){
     }
 }
 
+//move_outside_solid((direction + 180) mod 360, 0)
+
 
 </string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="Wall">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string></string>
           </argument>
         </arguments>
       </action>
