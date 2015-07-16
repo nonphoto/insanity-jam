@@ -26,6 +26,10 @@
     <script>scripts\function_turn_right.gml</script>
     <script>scripts\trace.gml</script>
     <script>scripts\logic_nothing.gml</script>
+    <script>scripts\gui_push.gml</script>
+    <script>scripts\gui_pop.gml</script>
+    <script>scripts\gui_x.gml</script>
+    <script>scripts\gui_y.gml</script>
   </scripts>
   <objects name="objects">
     <object>objects\Wall</object>

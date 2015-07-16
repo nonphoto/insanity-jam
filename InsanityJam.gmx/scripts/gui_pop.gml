@@ -1,0 +1,2 @@
+ds_stack_pop(gui_translate_x)
+ds_stack_pop(gui_translate_y)

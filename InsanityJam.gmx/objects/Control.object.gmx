@@ -3,7 +3,7 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>-1410065408</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -30,6 +30,16 @@ globalvar drone1;
 
 player1 = 0
 drone1 = 0
+
+tile_size = 16
+gui_height = tile_size * 3
+
+gui_translate_x = ds_stack_create()
+gui_translate_y = ds_stack_create()
+
+ds_stack_push(gui_translate_x, 0)
+ds_stack_push(gui_translate_y, 0)
+trace("AAAAAAAAAAAAAAAAA")
 </string>
           </argument>
         </arguments>
@@ -56,12 +66,22 @@ drone1 = 0
 var logic = drone1.logic
 var function = drone1.function
 
+draw_rectangle(gui_x(), gui_y(), gui_x() + 10, gui_y() + 10, false)
+
+gui_push(0, view_hview - gui_height)
+
+draw_rectangle(gui_x(), gui_y(), gui_x() + 10, gui_y() + gui_height, false)
+
+gui_pop()
+
+/*
 for (i = 0; i &lt; array_length_1d(logic); i++) {
     draw_rectangle(5, 100 + (i * 25), 25, 100 + (i * 25) + 20, !logic[i])
 }
 for (i = 0; i &lt; array_length_1d(function); i++) {
     draw_rectangle(30, 100 + (i * 25), 50, 100 + (i * 25) + 20, !function[i])
-}       
+}
+*/       
 </string>
           </argument>
         </arguments>
