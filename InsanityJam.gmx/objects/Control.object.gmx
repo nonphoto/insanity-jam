@@ -34,12 +34,13 @@ drone1 = 0
 tile_size = 16
 gui_height = tile_size * 3
 
+display_set_gui_maximise(2, 2, 0, 0)
+
 gui_translate_x = ds_stack_create()
 gui_translate_y = ds_stack_create()
 
 ds_stack_push(gui_translate_x, 0)
 ds_stack_push(gui_translate_y, 0)
-trace("AAAAAAAAAAAAAAAAA")
 </string>
           </argument>
         </arguments>

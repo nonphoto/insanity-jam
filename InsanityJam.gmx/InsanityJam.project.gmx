@@ -20,16 +20,22 @@
   <paths name="paths"/>
   <scripts name="scripts">
     <script>scripts\dumb_script.gml</script>
-    <script>scripts\logic_open.gml</script>
-    <script>scripts\logic_hit.gml</script>
-    <script>scripts\function_step.gml</script>
-    <script>scripts\function_turn_right.gml</script>
     <script>scripts\trace.gml</script>
-    <script>scripts\logic_nothing.gml</script>
-    <script>scripts\gui_push.gml</script>
-    <script>scripts\gui_pop.gml</script>
-    <script>scripts\gui_x.gml</script>
-    <script>scripts\gui_y.gml</script>
+    <scripts name="gui">
+      <script>scripts\gui_push.gml</script>
+      <script>scripts\gui_pop.gml</script>
+      <script>scripts\gui_x.gml</script>
+      <script>scripts\gui_y.gml</script>
+    </scripts>
+    <scripts name="if">
+      <script>scripts\logic_open.gml</script>
+      <script>scripts\logic_hit.gml</script>
+      <script>scripts\logic_nothing.gml</script>
+    </scripts>
+    <scripts name="then">
+      <script>scripts\function_step.gml</script>
+      <script>scripts\function_turn_right.gml</script>
+    </scripts>
   </scripts>
   <objects name="objects">
     <object>objects\Wall</object>
