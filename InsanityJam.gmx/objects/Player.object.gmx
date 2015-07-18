@@ -90,33 +90,6 @@ if (keyboard_check(vk_down) &amp;&amp; !moving &amp;&amp; place_free(x, y + tile
    moving = true
    yy += tile_size
 }
-
-
-
-/*
-if(collision_point(xx,yy,Wall,true,true)){
-    xx = x
-    yy = y
-}
-
-if(keyboard_check_released(vk_up))
-    yy = floor(yy/16)*16
-if(keyboard_check_released(vk_down))
-    yy = ceil(yy/16)*16
-if(keyboard_check_released(vk_left))
-    xx = floor(xx/16)*16
-if(keyboard_check_released(vk_right))
-    xx = ceil(xx/16)*16
-    
-if(yy &lt; y)
-    y -= move_speed
-if(yy &gt; y)
-    y += move_speed
-if(xx &lt; x)
-    x -= move_speed
-if(xx &gt; x)
-    x += move_speed
-*/    
 </string>
           </argument>
         </arguments>
