@@ -28,6 +28,7 @@
             <string>move_speed = 2
 held = noone
 held_type = noone
+moving = false
 
 xx = x
 yy = y
@@ -53,21 +54,49 @@ yy = y
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(keyboard_check(vk_up) &amp;&amp; place_free(x,y-move_speed)){
-    yy -= move_speed
+            <string>// Move object
+if (xx &lt; x) {
+   x = max(x - move_speed, xx)
 }
-if(keyboard_check(vk_down) &amp;&amp; place_free(x,y+move_speed)){
-    yy += move_speed
+if (xx &gt; x) {
+   x = min(x + move_speed, xx)
 }
-if(keyboard_check(vk_left) &amp;&amp; place_free(x-move_speed,y)){
-    xx -= move_speed
+if (yy &lt; y) {
+   y = max(y - move_speed, yy)
 }
-if(keyboard_check(vk_right) &amp;&amp; place_free(x+move_speed,y)){
-    xx += move_speed
+if (yy &gt; y) {
+   y = min(y + move_speed, yy)
 }
 
+// Check if completed movement
+if (y == yy &amp;&amp; x == xx) {
+   moving = false
+}
+
+// Check keyboard
+if (keyboard_check(vk_left) &amp;&amp; !moving &amp;&amp; place_free(x - tile_size, y)) {
+   moving = true
+   xx -= tile_size
+}
+if (keyboard_check(vk_right) &amp;&amp; !moving &amp;&amp; place_free(x + tile_size, y)) {
+   moving = true
+   xx += tile_size
+}
+if (keyboard_check(vk_up) &amp;&amp; !moving &amp;&amp; place_free(x, y - tile_size)) {
+   moving = true
+   yy -= tile_size
+}
+if (keyboard_check(vk_down) &amp;&amp; !moving &amp;&amp; place_free(x, y + tile_size)) {
+   moving = true
+   yy += tile_size
+}
+
+
+
+/*
 if(collision_point(xx,yy,Wall,true,true)){
-    choose(xx = x,yy = y)
+    xx = x
+    yy = y
 }
 
 if(keyboard_check_released(vk_up))
@@ -87,7 +116,7 @@ if(xx &lt; x)
     x -= move_speed
 if(xx &gt; x)
     x += move_speed
-    
+*/    
 </string>
           </argument>
         </arguments>

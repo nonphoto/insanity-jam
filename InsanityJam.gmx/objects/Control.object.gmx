@@ -25,13 +25,13 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>globalvar player1;
+            <string>
+globalvar player1;
 globalvar drone1;
 
 player1 = 0
 drone1 = 0
 
-tile_size = 16
 gui_height = tile_size * 3
 
 display_set_gui_maximise(2, 2, 0, 0)

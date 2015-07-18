@@ -53,6 +53,9 @@
   <rooms name="rooms">
     <room>rooms\room0</room>
   </rooms>
+  <constants number="1">
+    <constant name="tile_size">16</constant>
+  </constants>
   <help>
     <rtf>help.rtf</rtf>
   </help>
