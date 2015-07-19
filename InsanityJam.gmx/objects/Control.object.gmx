@@ -69,21 +69,25 @@ y = 0
 draw_set_colour(c_black)
 var logic = drone1.logic
 var function = drone1.function
-
+var spacing = 4
+var size = 8
 
 x = 0
 y = view_hview - menu_height
 draw_rectangle(x, y, x + view_wview, y + menu_height, false)
 
-
-/*
+draw_set_colour(c_red)
+x = spacing
+y += spacing
 for (i = 0; i &lt; array_length_1d(logic); i++) {
-    draw_rectangle(5, 100 + (i * 25), 25, 100 + (i * 25) + 20, !logic[i])
+    draw_rectangle(x, y, x + size, y + size, !logic[i])
+    x += size + spacing
 }
+x = spacing
+y += size + spacing
 for (i = 0; i &lt; array_length_1d(function); i++) {
-    draw_rectangle(30, 100 + (i * 25), 50, 100 + (i * 25) + 20, !function[i])
+    draw_rectangle(x, y, x + size, y + size, !function[i])
 }
-*/       
 </string>
           </argument>
         </arguments>
