@@ -22,12 +22,6 @@
   <scripts name="scripts">
     <script>scripts\dumb_script.gml</script>
     <script>scripts\trace.gml</script>
-    <scripts name="gui">
-      <script>scripts\gui_push.gml</script>
-      <script>scripts\gui_pop.gml</script>
-      <script>scripts\gui_x.gml</script>
-      <script>scripts\gui_y.gml</script>
-    </scripts>
     <scripts name="if">
       <script>scripts\logic_open.gml</script>
       <script>scripts\logic_hit.gml</script>

@@ -257,7 +257,6 @@ draw_text(0,16,held_type)
           <argument>
             <kind>1</kind>
             <string>draw_self()
-draw_rectangle(xx,yy,xx+16,yy+16,true)
 </string>
           </argument>
         </arguments>

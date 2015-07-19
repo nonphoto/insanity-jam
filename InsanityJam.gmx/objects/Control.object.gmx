@@ -32,7 +32,7 @@ globalvar drone1;
 player1 = 0
 drone1 = 0
 
-gui_height = tile_size * 3
+menu_height = tile_size * 3
 
 display_set_gui_maximise(2, 2, 0, 0)
 
@@ -63,17 +63,18 @@ ds_stack_push(gui_translate_y, 0)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_set_colour(c_red)
+            <string>x = 0
+y = 0
+
+draw_set_colour(c_black)
 var logic = drone1.logic
 var function = drone1.function
 
-draw_rectangle(gui_x(), gui_y(), gui_x() + 10, gui_y() + 10, false)
 
-gui_push(0, view_hview - gui_height)
+x = 0
+y = view_hview - menu_height
+draw_rectangle(x, y, x + view_wview, y + menu_height, false)
 
-draw_rectangle(gui_x(), gui_y(), gui_x() + 10, gui_y() + gui_height, false)
-
-gui_pop()
 
 /*
 for (i = 0; i &lt; array_length_1d(logic); i++) {
