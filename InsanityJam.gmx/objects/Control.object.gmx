@@ -32,7 +32,7 @@ globalvar drone1;
 player1 = 0
 drone1 = 0
 
-menu_height = tile_size * 3
+menu_height = tile_size * 4
 
 display_set_gui_maximise(2, 2, 0, 0)
 
