@@ -26,10 +26,14 @@
           <argument>
             <kind>1</kind>
             <string>logic[0] = asset_get_index("logic_nothing")
-function[0] = asset_get_index("function_step")
+function[0] = asset_get_index("move_forward")
 
+move_speed = 2
 direction = 0
-activated = 1
+
+moving = false
+xx = x
+yy = y
 </string>
           </argument>
         </arguments>
@@ -52,16 +56,27 @@ activated = 1
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>
-if(collision_line(x,y,player.x,player.y,Wall,true,true)){
-    activated = 1
+            <string>// Move object
+if (xx &lt; x) {
+   x = max(x - move_speed, xx)
 }
-else{
-    activated = 0 
+if (xx &gt; x) {
+   x = min(x + move_speed, xx)
+}
+if (yy &lt; y) {
+   y = max(y - move_speed, yy)
+}
+if (yy &gt; y) {
+   y = min(y + move_speed, yy)
 }
 
+// Check if completed movement
+if (y == yy &amp;&amp; x == xx) {
+   moving = false
+}
 
-if(activated == 1){
+var c = tile_size / 2
+if (collision_line(x + c, y + c, player1.x + c, player1.y + c, Wall, false, true)) {
     var i;
     for(i = 0; i &lt; array_length_1d(logic); i ++){
         if (script_execute(logic[i]) &amp;&amp; function[i] &amp;&amp; logic[i]) {
@@ -69,10 +84,6 @@ if(activated == 1){
         }
     }
 }
-
-//move_outside_solid((direction + 180) mod 360, 0)
-
-
 </string>
           </argument>
         </arguments>

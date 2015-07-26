@@ -52,6 +52,8 @@
   </views>
   <instances>
     <instance objName="Control" x="0" y="0" name="inst_287D0A82" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="D1Spawn" x="96" y="192" name="inst_018971D7" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="P1Spawn" x="32" y="176" name="inst_1AC018A6" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="Wall" x="368" y="0" name="inst_79817B58" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="Wall" x="352" y="0" name="inst_54AA8F3C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="Wall" x="336" y="0" name="inst_09ABE567" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -199,8 +201,6 @@
     <instance objName="Wall" x="176" y="96" name="inst_7A8F777A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="Code" x="240" y="192" name="inst_17B49228" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="Code2" x="256" y="160" name="inst_1B68E4A1" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="P1Spawn" x="32" y="176" name="inst_1AC018A6" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="D1Spawn" x="96" y="192" name="inst_018971D7" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="Wall" x="16" y="240" name="inst_9DB32EC8" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="Wall" x="48" y="240" name="inst_D337BBEA" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="Wall" x="80" y="240" name="inst_BDE1C7BD" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
