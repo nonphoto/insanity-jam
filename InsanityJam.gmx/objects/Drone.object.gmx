@@ -25,13 +25,16 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>logic[0] = asset_get_index("logic_nothing")
-function[0] = asset_get_index("move_forward")
+            <string>player = false
+
+logic[0] = asset_get_index("logic_nothing")
+action[0] = asset_get_index("move_forward")
+next_index = 0
+moving = false
 
 move_speed = 2
 direction = 0
 
-moving = false
 xx = x
 yy = y
 </string>
@@ -70,19 +73,23 @@ if (yy &gt; y) {
    y = min(y + move_speed, yy)
 }
 
-// Check if completed movement
+// Check for completed movement
 if (y == yy &amp;&amp; x == xx) {
    moving = false
 }
 
-var c = tile_size / 2
-if (collision_line(x + c, y + c, player1.x + c, player1.y + c, Wall, false, true)) {
-    var i;
-    for(i = 0; i &lt; array_length_1d(logic); i ++){
-        if (script_execute(logic[i]) &amp;&amp; function[i] &amp;&amp; logic[i]) {
-            script_execute(function[i])
-        }
-    }
+// If completed action and not in sight of player, take next action
+if (!moving) {
+   var c = tile_size / 2
+   if (collision_line(x + c, y + c, player.x + c, player.y + c, Wall, false, true)) {
+      if (script_execute(logic[next_index])) {
+         script_execute(action[next_index])
+      }
+      next_index += 1
+      if (next_index &gt;= array_length_1d(logic)) {
+         next_index = 0
+      }
+   }
 }
 </string>
           </argument>

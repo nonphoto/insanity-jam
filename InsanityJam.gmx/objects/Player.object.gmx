@@ -25,7 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>move_speed = 2
+            <string>drone = false
+
+move_speed = 2
 held = noone
 held_type = noone
 moving = false
@@ -114,23 +116,23 @@ if (keyboard_check(vk_down) &amp;&amp; !moving &amp;&amp; place_free(x, y + tile
             <kind>1</kind>
             <string>if(keyboard_check_pressed(vk_enter) &amp;&amp; held != noone){
     var logic_length = array_length_1d(other.logic)
-    var function_length = array_length_1d(other.function)
+    var action_length = array_length_1d(other.action)
         if(held_type == "logic"){
         if(other.logic[logic_length-1] != 0){
             other.logic[logic_length] = held
-            other.function[function_length] = 0
+            other.action[action_length] = 0
         }
         if(other.logic[logic_length-1] == 0){
             other.logic[logic_length-1] = held
         }
     }
-    if(held_type == "function"){
-        if(other.function[function_length-1] != 0){
-            other.function[function_length] = held
+    if(held_type == "action"){
+        if(other.action[action_length-1] != 0){
+            other.action[action_length] = held
             other.logic[logic_length] = 0
         }
-        if(other.function[function_length-1] == 0){
-            other.function[function_length-1] = held
+        if(other.action[action_length-1] == 0){
+            other.action[action_length-1] = held
         }
     }
     held = noone

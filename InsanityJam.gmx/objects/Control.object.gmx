@@ -67,7 +67,7 @@ ds_stack_push(gui_translate_y, 0)
 y = 0
 
 var logic = drone1.logic
-var function = drone1.function
+var action = drone1.action
 var spr = asset_get_index("code_block")
 var spacing = 8
 var size = 16
@@ -92,8 +92,8 @@ for (i = 0; i &lt; array_length_1d(logic); i++) {
 }
 x = spacing
 y += size + spacing
-for (i = 0; i &lt; array_length_1d(function); i++) {
-    if (function[i] != 0) {
+for (i = 0; i &lt; array_length_1d(action); i++) {
+    if (action[i] != 0) {
        draw_sprite(spr, 1, x, y)
     }
     else {
