@@ -6,41 +6,49 @@
   <NewExtensions/>
   <sounds name="sound"/>
   <sprites name="sprites">
-    <sprite>sprites\sprite0</sprite>
-    <sprite>sprites\sprite1</sprite>
-    <sprite>sprites\sprite2</sprite>
-    <sprite>sprites\sprite3</sprite>
-    <sprite>sprites\sprite5</sprite>
-    <sprite>sprites\sprite6</sprite>
-    <sprite>sprites\sprite7</sprite>
-    <sprite>sprites\sprite8</sprite>
-    <sprite>sprites\sprite9</sprite>
-    <sprite>sprites\code_block</sprite>
-    <sprite>sprites\code_select</sprite>
-    <sprite>sprites\sprite12</sprite>
+    <sprite>sprites\spr_circle</sprite>
+    <sprite>sprites\spr_square</sprite>
+    <sprite>sprites\spr_triangle</sprite>
+    <sprite>sprites\spr_diamond</sprite>
+    <sprite>sprites\spr_spawn_p1</sprite>
+    <sprite>sprites\spr_spawn_p2</sprite>
+    <sprite>sprites\spr_spawn_d1</sprite>
+    <sprite>sprites\spr_spawn_d2</sprite>
+    <sprite>sprites\spr_control</sprite>
+    <sprite>sprites\spr_empty</sprite>
+    <sprite>sprites\spr_selector</sprite>
+    <sprite>sprites\spr_move_forward</sprite>
+    <sprite>sprites\spr_turn_right</sprite>
+    <sprite>sprites\spr_turn_left</sprite>
+    <sprite>sprites\spr_logic_blocked</sprite>
+    <sprite>sprites\spr_logic_free</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
   <scripts name="scripts">
     <script>scripts\dumb_script.gml</script>
     <script>scripts\trace.gml</script>
-    <scripts name="if">
-      <script>scripts\logic_open.gml</script>
-      <script>scripts\logic_hit.gml</script>
-      <script>scripts\logic_nothing.gml</script>
+    <scripts name="logic">
+      <script>scripts\scr_logic_free.gml</script>
+      <script>scripts\scr_logic_blocked.gml</script>
+      <script>scripts\scr_logic_nothing.gml</script>
     </scripts>
-    <scripts name="then">
-      <script>scripts\function_step.gml</script>
-      <script>scripts\function_turn_right.gml</script>
-      <script>scripts\move_forward.gml</script>
+    <scripts name="action">
+      <script>scripts\scr_turn_left.gml</script>
+      <script>scripts\scr_turn_right.gml</script>
+      <script>scripts\scr_move_forward.gml</script>
     </scripts>
   </scripts>
   <objects name="objects">
     <object>objects\Wall</object>
     <object>objects\Player</object>
-    <object>objects\Code</object>
-    <object>objects\Code2</object>
     <object>objects\Drone</object>
+    <object>objects\Code</object>
+    <object>objects\Logic_Free</object>
+    <object>objects\Logic_Blocked</object>
+    <object>objects\Turn_Left</object>
+    <object>objects\Turn_Right</object>
+    <object>objects\Move_Forward</object>
     <object>objects\Control</object>
     <object>objects\P1Spawn</object>
     <object>objects\D1Spawn</object>
