@@ -22,8 +22,11 @@
     <sprite>sprites\spr_turn_left</sprite>
     <sprite>sprites\spr_logic_blocked</sprite>
     <sprite>sprites\spr_logic_free</sprite>
+    <sprite>sprites\sprite16</sprite>
   </sprites>
-  <backgrounds name="background"/>
+  <backgrounds name="background">
+    <background>background\background0</background>
+  </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
     <script>scripts\dumb_script.gml</script>
