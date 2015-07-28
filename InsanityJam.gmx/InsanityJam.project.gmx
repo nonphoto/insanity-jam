@@ -23,6 +23,9 @@
     <sprite>sprites\spr_logic_blocked</sprite>
     <sprite>sprites\spr_logic_free</sprite>
     <sprite>sprites\sprite16</sprite>
+    <sprite>sprites\sprite18</sprite>
+    <sprite>sprites\sprite17</sprite>
+    <sprite>sprites\sprite19</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\background0</background>
