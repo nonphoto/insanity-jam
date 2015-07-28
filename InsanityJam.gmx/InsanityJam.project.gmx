@@ -15,8 +15,9 @@
     <sprite>sprites\spr_spawn_d1</sprite>
     <sprite>sprites\spr_spawn_d2</sprite>
     <sprite>sprites\spr_control</sprite>
-    <sprite>sprites\spr_empty</sprite>
     <sprite>sprites\spr_selector</sprite>
+    <sprite>sprites\spr_empty</sprite>
+    <sprite>sprites\spr_code</sprite>
     <sprite>sprites\spr_move_forward</sprite>
     <sprite>sprites\spr_turn_right</sprite>
     <sprite>sprites\spr_turn_left</sprite>

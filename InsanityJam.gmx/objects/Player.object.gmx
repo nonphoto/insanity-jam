@@ -59,39 +59,44 @@ yy = y
             <kind>1</kind>
             <string>// Move object
 if (xx &lt; x) {
-   x = max(x - move_speed, xx)
+    x = max(x - move_speed, xx)
 }
 if (xx &gt; x) {
-   x = min(x + move_speed, xx)
+    x = min(x + move_speed, xx)
 }
 if (yy &lt; y) {
-   y = max(y - move_speed, yy)
+    y = max(y - move_speed, yy)
 }
 if (yy &gt; y) {
-   y = min(y + move_speed, yy)
+    y = min(y + move_speed, yy)
+}
+
+if (held != noone) {
+    held.x = x
+    held.y = y
 }
 
 // Check if completed movement
 if (y == yy &amp;&amp; x == xx) {
-   moving = false
+    moving = false
 }
 
 // Check keyboard
 if (keyboard_check(vk_left) &amp;&amp; !moving &amp;&amp; place_free(x - tile_size, y)) {
-   moving = true
-   xx -= tile_size
+    moving = true
+    xx -= tile_size
 }
 if (keyboard_check(vk_right) &amp;&amp; !moving &amp;&amp; place_free(x + tile_size, y)) {
-   moving = true
-   xx += tile_size
+    moving = true
+    xx += tile_size
 }
 if (keyboard_check(vk_up) &amp;&amp; !moving &amp;&amp; place_free(x, y - tile_size)) {
-   moving = true
-   yy -= tile_size
+    moving = true
+    yy -= tile_size
 }
 if (keyboard_check(vk_down) &amp;&amp; !moving &amp;&amp; place_free(x, y + tile_size)) {
-   moving = true
-   yy += tile_size
+    moving = true
+    yy += tile_size
 }
 </string>
           </argument>
@@ -115,10 +120,7 @@ if (keyboard_check(vk_down) &amp;&amp; !moving &amp;&amp; place_free(x, y + tile
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(keyboard_check_pressed(vk_enter)){
-    held = other.id
-}
-</string>
+            <string></string>
           </argument>
         </arguments>
       </action>
@@ -143,7 +145,6 @@ if (keyboard_check(vk_down) &amp;&amp; !moving &amp;&amp; place_free(x, y + tile
             <string>if(keyboard_check_pressed(vk_enter) &amp;&amp; (held != noone)){
     var logic_length = array_length_1d(other.logic)
     var action_length = array_length_1d(other.action)
-    trace(held)
     if(held.type == "logic"){
         if(other.logic[logic_length-1] != noone){
             other.logic[logic_length] = held
@@ -191,7 +192,48 @@ if (keyboard_check(vk_down) &amp;&amp; !moving &amp;&amp; place_free(x, y + tile
         </arguments>
       </action>
     </event>
-    <event eventtype="9" enumb="27">
+    <event eventtype="9" enumb="13">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (held == noone) {
+    var obj = instance_place(x, y, Code)
+    if (obj != noone) {
+        held = obj
+        held.x = 0
+        held.y = 0
+        held.visible = false
+    }
+}
+else {
+    var obj = instance_place(x, y, Drone)
+    if (obj == noone) {
+        held.x = x
+        held.y = y
+        held.visible = true
+        held = noone
+    }
+}
+    
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="10" enumb="27">
       <action>
         <libid>1</libid>
         <id>331</id>

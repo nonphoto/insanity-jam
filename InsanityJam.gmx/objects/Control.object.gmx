@@ -25,15 +25,13 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>
-globalvar player1;
+            <string>globalvar player1;
 globalvar drone1;
 
 player1 = 0
 drone1 = 0
 
 menu_height = tile_size * 4
-
 display_set_gui_maximise(2, 2, 0, 0)
 
 gui_translate_x = ds_stack_create()
@@ -69,7 +67,7 @@ y = 0
 var logic = drone1.logic
 var action = drone1.action
 var empty_sprite = asset_get_index("spr_empty")
-var spacing = 8
+var spacing = 4
 var size = 16
 
 x = 0
@@ -78,7 +76,6 @@ draw_set_colour(c_black)
 draw_rectangle(x, y, x + view_wview, y + menu_height, false)
 draw_set_colour(c_white)
 
-draw_set_colour(c_red)
 x = spacing
 y += spacing
 for (i = 0; i &lt; array_length_1d(logic); i++) {
