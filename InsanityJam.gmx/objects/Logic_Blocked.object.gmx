@@ -25,7 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>type = "logic"
+            <string>event_inherited()
+type = "logic"
 code = scr_logic_blocked
 </string>
           </argument>

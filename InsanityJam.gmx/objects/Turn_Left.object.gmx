@@ -25,7 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>type = "action"
+            <string>event_inherited()
+type = "action"
 code = scr_turn_left
 </string>
           </argument>

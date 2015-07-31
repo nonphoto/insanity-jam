@@ -3,7 +3,7 @@
   <spriteName>sprite19</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>-2</depth>
   <persistent>0</persistent>
   <parentName>Code</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -25,7 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>type = "logic"
+            <string>event_inherited()
+type = "logic"
 code = scr_logic_free
 </string>
           </argument>

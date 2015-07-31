@@ -30,6 +30,7 @@
 move_speed = 2
 held = noone
 moving = false
+editing = false
 
 image_speed = .1
 
@@ -71,11 +72,6 @@ if (yy &gt; y) {
     y = min(y + move_speed, yy)
 }
 
-if (held != noone) {
-    held.x = x
-    held.y = y
-}
-
 // Check if completed movement
 if (y == yy &amp;&amp; x == xx) {
     moving = false
@@ -89,21 +85,21 @@ else{
 }
 
 // Check keyboard
-if (keyboard_check(vk_left) &amp;&amp; !moving &amp;&amp; place_free(x - tile_size, y)) {
+if (keyboard_check(vk_left) &amp;&amp; !moving &amp;&amp; !editing &amp;&amp; place_free(x - tile_size, y)) {
     moving = true
     xx -= tile_size
     sprite_index = spr_left
 }
-if (keyboard_check(vk_right) &amp;&amp; !moving &amp;&amp; place_free(x + tile_size, y)) {
+if (keyboard_check(vk_right) &amp;&amp; !moving &amp;&amp; !editing &amp;&amp; place_free(x + tile_size, y)) {
     moving = true
     xx += tile_size
     sprite_index = spr_right
 }
-if (keyboard_check(vk_up) &amp;&amp; !moving &amp;&amp; place_free(x, y - tile_size)) {
+if (keyboard_check(vk_up) &amp;&amp; !moving &amp;&amp; !editing &amp;&amp; place_free(x, y - tile_size)) {
     moving = true
     yy -= tile_size
 }
-if (keyboard_check(vk_down) &amp;&amp; !moving &amp;&amp; place_free(x, y + tile_size)) {
+if (keyboard_check(vk_down) &amp;&amp; !moving &amp;&amp; !editing &amp;&amp; place_free(x, y + tile_size)) {
     moving = true
     yy += tile_size
 }
@@ -151,7 +147,11 @@ if (keyboard_check(vk_down) &amp;&amp; !moving &amp;&amp; place_free(x, y + tile
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(keyboard_check_pressed(vk_enter) &amp;&amp; (held != noone)){
+            <string>if (keyboard_check_pressed(vk_enter)){
+    editing = !editing
+}
+
+if (false) {
     var logic_length = array_length_1d(other.logic)
     var action_length = array_length_1d(other.action)
     if(held.type == "logic"){
@@ -172,6 +172,7 @@ if (keyboard_check(vk_down) &amp;&amp; !moving &amp;&amp; place_free(x, y + tile
             other.action[action_length-1] = held
         }
     }
+    
     held = noone
 }
 </string>
@@ -222,17 +223,13 @@ if (keyboard_check(vk_down) &amp;&amp; !moving &amp;&amp; place_free(x, y + tile
     var obj = instance_place(x, y, Code)
     if (obj != noone) {
         held = obj
-        held.x = 0
-        held.y = 0
-        held.visible = false
     }
 }
 else {
     var obj = instance_place(x, y, Drone)
     if (obj == noone) {
-        held.x = x
-        held.y = y
-        held.visible = true
+        held.xx = x
+        held.yy = y
         held = noone
     }
 }

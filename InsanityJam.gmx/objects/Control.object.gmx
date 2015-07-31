@@ -3,7 +3,7 @@
   <spriteName>spr_control</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>-1410065408</depth>
+  <depth>-1</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -39,6 +39,10 @@ gui_translate_y = ds_stack_create()
 
 ds_stack_push(gui_translate_x, 0)
 ds_stack_push(gui_translate_y, 0)
+
+//Initialize element properties...
+
+
 </string>
           </argument>
         </arguments>
@@ -64,39 +68,55 @@ ds_stack_push(gui_translate_y, 0)
             <string>x = 0
 y = 0
 
-var logic = drone1.logic
-var action = drone1.action
 var empty_sprite = asset_get_index("spr_empty")
-var spacing = 4
 var size = 16
+var w_start = view_wview / 2
+var y_start = view_hview - menu_height
 
 x = 0
-y = view_hview - menu_height
+y = y_start
 draw_set_colour(c_black)
 draw_rectangle(x, y, x + view_wview, y + menu_height, false)
-draw_set_colour(c_white)
 
-x = spacing
-y += spacing
-for (i = 0; i &lt; array_length_1d(logic); i++) {
-    if (logic[i] != noone) {
-       draw_sprite(logic[i].sprite_index, 0, x, y)
-    }
-    else {
-      draw_sprite(empty_sprite, 0, x, y)
-    }
-    x += size + spacing
+
+if (player1.held != noone) {
+    x = (w_start / 2) - (tile_size / 2)
+    player1.held.xx = x
+    player1.held.yy = y
+    y += tile_size
 }
-x = spacing
-y += size + spacing
-for (i = 0; i &lt; array_length_1d(action); i++) {
-    if (action[i] != noone) {
-       draw_sprite(action[i].sprite_index, 0, x, y)
+
+if (player1.editing) {
+    l = array_length_1d(drone1.logic)
+    x = (w_start / 2) - (l * tile_size / 2)
+
+    i = 0        
+    while (i &lt; l) {
+        if (drone1.logic[i] != noone) {
+            draw_sprite(drone1.logic[i].sprite_index, 0, x, y)    
+        }
+        else {
+            draw_sprite(empty_sprite, 0, x, y)
+        }
+        x += size
+        i += 1
     }
-    else {
-       draw_sprite(empty_sprite, 0, x, y)
+            
+    l = array_length_1d(drone1.action)
+    x = (w_start / 2) - (l * tile_size / 2)
+    y += size
+    
+    i = 0
+    while (i &lt; l) {
+        if (drone1.action[i] != noone) {
+            draw_sprite(drone1.action[i].sprite_index, 0, x, y)    
+        }
+        else {
+            draw_sprite(empty_sprite, 0, x, y)
+        }
+        x += size
+        i += 1
     }
-    x += size + spacing
 }
 </string>
           </argument>
