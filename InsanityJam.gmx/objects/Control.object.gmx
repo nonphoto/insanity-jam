@@ -79,44 +79,55 @@ draw_set_colour(c_black)
 draw_rectangle(x, y, x + view_wview, y + menu_height, false)
 
 
-if (player1.held != noone) {
+if (player1.held &gt; 0) {
+if (player1.held.type == "logic") {
     x = (w_start / 2) - (tile_size / 2)
+    y = y_start
     player1.held.xx = x
     player1.held.yy = y
-    y += tile_size
+}
+if (player1.held.type == "action") {
+    x = (w_start / 2) - (tile_size / 2)
+    y = y_start + tile_size * 3
+    player1.held.xx = x
+    player1.held.yy = y
+}
 }
 
 if (player1.editing) {
-    l = array_length_1d(drone1.logic)
-    x = (w_start / 2) - (l * tile_size / 2)
+    y = y_start + tile_size
+}
+else {
+    y = view_hview
+}
 
-    i = 0        
-    while (i &lt; l) {
-        if (drone1.logic[i] != noone) {
-            draw_sprite(drone1.logic[i].sprite_index, 0, x, y)    
-        }
-        else {
-            draw_sprite(empty_sprite, 0, x, y)
-        }
-        x += size
-        i += 1
+l = array_length_1d(drone1.logic)
+x = (w_start / 2) - (l * tile_size / 2)
+
+i = 0        
+while (i &lt; l) {
+    draw_sprite(empty_sprite, 0, x, y);
+    if (drone1.logic[i] &gt; 0) {
+        drone1.logic[i].xx = x
+        drone1.logic[i].yy = y
     }
-            
-    l = array_length_1d(drone1.action)
-    x = (w_start / 2) - (l * tile_size / 2)
-    y += size
+    x += size
+    i += 1
+}
+          
+l = array_length_1d(drone1.action)
+x = (w_start / 2) - (l * tile_size / 2)
+y += size
     
-    i = 0
-    while (i &lt; l) {
-        if (drone1.action[i] != noone) {
-            draw_sprite(drone1.action[i].sprite_index, 0, x, y)    
-        }
-        else {
-            draw_sprite(empty_sprite, 0, x, y)
-        }
-        x += size
-        i += 1
+i = 0
+while (i &lt; l) {
+    draw_sprite(empty_sprite, 0, x, y);
+    if (drone1.action[i] &gt; 0) {
+        drone1.action[i].xx = x
+        drone1.action[i].yy = y    
     }
+    x += size
+    i += 1
 }
 </string>
           </argument>

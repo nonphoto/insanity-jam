@@ -202,6 +202,60 @@ if (false) {
         </arguments>
       </action>
     </event>
+    <event eventtype="9" enumb="40">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (editing &amp;&amp; (held &lt;= 0 || drone.action[0] &lt;= 0)) {
+    var temp = drone.action[0];
+    drone.action[0] = held;
+    held = temp;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="38">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (editing &amp;&amp; (held &lt;= 0 || drone.logic[0] &lt;= 0)) {
+    var temp = drone.logic[0];
+    drone.logic[0] = held;
+    held = temp;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="9" enumb="13">
       <action>
         <libid>1</libid>
@@ -220,12 +274,14 @@ if (false) {
           <argument>
             <kind>1</kind>
             <string>if (held == noone) {
+    // Picking up items
     var obj = instance_place(x, y, Code)
     if (obj != noone) {
         held = obj
     }
 }
 else {
+    // Dropping items
     var obj = instance_place(x, y, Drone)
     if (obj == noone) {
         held.xx = x
