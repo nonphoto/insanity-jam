@@ -30,7 +30,7 @@
 move_speed = 2
 held = noone
 moving = false
-editing = false
+editing = noone
 
 image_speed = .1
 
@@ -85,21 +85,21 @@ else{
 }
 
 // Check keyboard
-if (keyboard_check(vk_left) &amp;&amp; !moving &amp;&amp; !editing &amp;&amp; place_free(x - tile_size, y)) {
+if (keyboard_check(vk_left) &amp;&amp; !moving &amp;&amp; editing &lt;= 0 &amp;&amp; place_free(x - tile_size, y)) {
     moving = true
     xx -= tile_size
     sprite_index = spr_left
 }
-if (keyboard_check(vk_right) &amp;&amp; !moving &amp;&amp; !editing &amp;&amp; place_free(x + tile_size, y)) {
+if (keyboard_check(vk_right) &amp;&amp; !moving &amp;&amp; editing &lt;= 0 &amp;&amp; place_free(x + tile_size, y)) {
     moving = true
     xx += tile_size
     sprite_index = spr_right
 }
-if (keyboard_check(vk_up) &amp;&amp; !moving &amp;&amp; !editing &amp;&amp; place_free(x, y - tile_size)) {
+if (keyboard_check(vk_up) &amp;&amp; !moving &amp;&amp; editing &lt;= 0 &amp;&amp; place_free(x, y - tile_size)) {
     moving = true
     yy -= tile_size
 }
-if (keyboard_check(vk_down) &amp;&amp; !moving &amp;&amp; !editing &amp;&amp; place_free(x, y + tile_size)) {
+if (keyboard_check(vk_down) &amp;&amp; !moving &amp;&amp; editing &lt;= 0 &amp;&amp; place_free(x, y + tile_size)) {
     moving = true
     yy += tile_size
 }
@@ -148,7 +148,12 @@ if (keyboard_check(vk_down) &amp;&amp; !moving &amp;&amp; !editing &amp;&amp; pl
           <argument>
             <kind>1</kind>
             <string>if (keyboard_check_pressed(vk_enter)){
-    editing = !editing
+    if (editing &gt; 0) {
+        editing = noone
+    }
+    else {
+        editing = other.id
+    }
 }
 
 if (false) {
@@ -219,9 +224,9 @@ if (false) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (editing &amp;&amp; (held &lt;= 0 || drone.action[0] &lt;= 0)) {
-    var temp = drone.action[0];
-    drone.action[0] = held;
+            <string>if (editing &amp;&amp; (held &lt;= 0 || editing.action[0] &lt;= 0)) {
+    var temp = editing.action[0];
+    editing.action[0] = held;
     held = temp;
 }
 </string>
@@ -246,9 +251,9 @@ if (false) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (editing &amp;&amp; (held &lt;= 0 || drone.logic[0] &lt;= 0)) {
-    var temp = drone.logic[0];
-    drone.logic[0] = held;
+            <string>if (editing &gt; 0 &amp;&amp; (held &lt;= 0 || editing.logic[0] &lt;= 0)) {
+    var temp = editing.logic[0];
+    editing.logic[0] = held;
     held = temp;
 }
 </string>

@@ -94,40 +94,37 @@ if (player1.held.type == "action") {
 }
 }
 
-if (player1.editing) {
+if (player1.editing &gt; 0) {
     y = y_start + tile_size
-}
-else {
-    y = view_hview
-}
 
-l = array_length_1d(drone1.logic)
+l = array_length_1d(player1.editing.logic)
 x = (w_start / 2) - (l * tile_size / 2)
 
 i = 0        
 while (i &lt; l) {
     draw_sprite(empty_sprite, 0, x, y);
-    if (drone1.logic[i] &gt; 0) {
-        drone1.logic[i].xx = x
-        drone1.logic[i].yy = y
+    if (player1.editing.logic[i] &gt; 0) {
+        player1.editing.logic[i].xx = x
+        player1.editing.logic[i].yy = y
     }
     x += size
     i += 1
 }
           
-l = array_length_1d(drone1.action)
+l = array_length_1d(player1.editing.action)
 x = (w_start / 2) - (l * tile_size / 2)
 y += size
     
 i = 0
 while (i &lt; l) {
     draw_sprite(empty_sprite, 0, x, y);
-    if (drone1.action[i] &gt; 0) {
-        drone1.action[i].xx = x
-        drone1.action[i].yy = y    
+    if (player1.editing.action[i] &gt; 0) {
+        player1.editing.action[i].xx = x
+        player1.editing.action[i].yy = y    
     }
     x += size
     i += 1
+}
 }
 </string>
           </argument>
