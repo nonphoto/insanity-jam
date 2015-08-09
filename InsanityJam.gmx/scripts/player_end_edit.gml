@@ -1,3 +1,3 @@
 if (number == 1) {
-    control.p1_isEditing = false
+    control.p1_is_editing = false
 }

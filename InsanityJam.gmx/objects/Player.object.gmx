@@ -156,34 +156,14 @@ if (keyboard_check(vk_down) &amp;&amp; !moving &amp;&amp; editing &lt;= 0 &amp;&
     }
     else {
         editing = other.id
-        event_perform(ev_user0, 0)
+        var l = ds_list_size(editing.logic);
+        if (ds_list_find_value(editing.logic, l - 1) != 0 || ds_list_find_value(editing.action, l - 1) != 0) {
+            ds_list_insert(editing.logic, l, 0);
+            ds_list_insert(editing.action, l, 0);
+        }
+        event_perform(ev_user0, 0);
         player_start_edit()
     }
-}
-
-if (false) {
-    var logic_length = array_length_1d(other.logic)
-    var action_length = array_length_1d(other.action)
-    if(held.type == "logic"){
-        if(other.logic[logic_length-1] != noone){
-            other.logic[logic_length] = held
-            other.action[action_length] = noone
-        }
-        if(other.logic[logic_length-1] == noone){
-            other.logic[logic_length-1] = held
-        }
-    }
-    if(held.type == "action"){
-        if(other.action[action_length-1] != noone){
-            other.action[action_length] = held
-            other.logic[logic_length] = noone
-        }
-        if(other.action[action_length-1] == noone){
-            other.action[action_length-1] = held
-        }
-    }
-    
-    held = noone
 }
 </string>
           </argument>
@@ -229,9 +209,9 @@ if (false) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (editing &amp;&amp; (held &lt;= 0 || editing.action[0] &lt;= 0)) {
-    var temp = editing.action[0];
-    editing.action[0] = held;
+            <string>if (editing &amp;&amp; (held &lt;= 0 || ds_list_find_value(editing.action, 0) &lt;= 0)) {
+    var temp = ds_list_find_value(editing.action, 0);
+    ds_list_replace(editing.action, 0, held)
     held = temp;
 }
 </string>
@@ -256,9 +236,9 @@ if (false) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (editing &gt; 0 &amp;&amp; (held &lt;= 0 || editing.logic[0] &lt;= 0)) {
-    var temp = editing.logic[0];
-    editing.logic[0] = held;
+            <string>if (editing &gt; 0 &amp;&amp; (held &lt;= 0 || ds_list_find_value(editing.logic, 0) &lt;= 0)) {
+    var temp = ds_list_find_value(editing.logic, 0);
+    ds_list_replace(editing.logic, 0, held);
     held = temp;
 }
 </string>

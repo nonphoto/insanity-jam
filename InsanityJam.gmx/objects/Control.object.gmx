@@ -44,7 +44,7 @@ gui2_y = view_hview - tile_size * 4
 gui2_w = view_wview / 2
 gui2_h = tile_size * 4
 
-p1_isEditing = false
+p1_is_editing = false
 p1_drone = noone
 p1_editing_x = 0
 p1_editing_y = 0
@@ -76,14 +76,14 @@ p1_held_y = gui1_y
             <kind>1</kind>
             <string>var xx;
 var yy;
-if (p1_isEditing) {
-    var l = array_length_1d(p1_drone.logic)
+if (p1_is_editing) {
+    var l = ds_list_size(p1_drone.logic)
     xx = gui1_x + (gui1_w / 2) - (l * tile_size) / 2
     yy = gui1_y + tile_size
 }
 else {
     if (p1_drone &gt; 0) {
-        var l = array_length_1d(p1_drone.logic)
+        var l = ds_list_size(p1_drone.logic)
         xx = gui1_x - (l + 1) * tile_size / 2
         yy = gui1_y + tile_size
     }
@@ -136,10 +136,10 @@ y = p1_editing_y
 
 if (p1_drone &gt; 0) {
     i = 0
-    l = array_length_1d(p1_drone.logic)        
+    l = ds_list_size(p1_drone.logic)        
     while (i &lt; l) {
-        if (p1_drone.logic[i] &gt; 0) {
-            draw_sprite(p1_drone.logic[i].sprite_index, 0, x, y)   
+        if (ds_list_find_value(p1_drone.logic, i) &gt; 0) {
+            draw_sprite(ds_list_find_value(p1_drone.logic, i).sprite_index, 0, x, y)   
         }
         else {
             draw_sprite(empty_sprite, 0, x, y)
@@ -154,10 +154,10 @@ y += tile_size
 
 if (p1_drone &gt; 0) {
     i = 0
-    l = array_length_1d(p1_drone.action)
+    l = ds_list_size(p1_drone.action)
     while (i &lt; l) {
-        if (p1_drone.action[i] &gt; 0) {
-            draw_sprite(p1_drone.action[i].sprite_index, 0, x, y)   
+        if (ds_list_find_value(p1_drone.action, i) &gt; 0) {
+            draw_sprite(ds_list_find_value(p1_drone.action, i).sprite_index, 0, x, y)   
         }
         else {
             draw_sprite(empty_sprite, 0, x, y)

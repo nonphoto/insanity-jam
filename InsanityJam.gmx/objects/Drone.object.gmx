@@ -28,8 +28,8 @@
             <string>player = false
 moving = false
 
-logic[0] = noone
-action[0] = noone
+logic = ds_list_create()
+action = ds_list_create()
 next_index = 0
 
 move_speed = 2
@@ -82,13 +82,13 @@ if (y == yy &amp;&amp; x == xx) {
 if (!moving) {
    var c = tile_size / 2
    if (collision_line(x + c, y + c, player.x + c, player.y + c, Wall, false, true)) {
-      if (logic[next_index] != noone &amp;&amp; action[next_index] != noone) {
-         if (script_execute(logic[next_index].code)) {
-            script_execute(action[next_index].code)
+      if (ds_list_find_value(logic, next_index) != noone &amp;&amp; ds_list_find_value(action, next_index) != noone) {
+         if (script_execute(ds_list_find_value(logic, next_index).code)) {
+            script_execute(ds_list_find_value(action, next_index).code)
          }
       }
       next_index += 1
-      if (next_index &gt;= array_length_1d(logic)) {
+      if (next_index &gt;= ds_list_size(logic)) {
          next_index = 0
       }
    }
