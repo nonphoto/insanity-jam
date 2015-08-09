@@ -26,6 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>drone1 = instance_create(x, y, Drone)
+drone1.number = 1
 if (player1) {
    drone1.player = player1
    player1.drone = drone1

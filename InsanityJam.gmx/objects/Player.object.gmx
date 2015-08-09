@@ -26,6 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>drone = false
+player_number = 0
 
 move_speed = 2
 held = noone
@@ -150,9 +151,13 @@ if (keyboard_check(vk_down) &amp;&amp; !moving &amp;&amp; editing &lt;= 0 &amp;&
             <string>if (keyboard_check_pressed(vk_enter)){
     if (editing &gt; 0) {
         editing = noone
+        event_perform(ev_user1, 0)
+        player_end_edit()
     }
     else {
         editing = other.id
+        event_perform(ev_user0, 0)
+        player_start_edit()
     }
 }
 
@@ -281,16 +286,18 @@ if (false) {
             <string>if (held == noone) {
     // Picking up items
     var obj = instance_place(x, y, Code)
-    if (obj != noone) {
+    if (obj != noone &amp;&amp; obj.visible = true) {
         held = obj
+        held.visible = false
     }
 }
 else {
     // Dropping items
     var obj = instance_place(x, y, Drone)
     if (obj == noone) {
-        held.xx = x
-        held.yy = y
+        held.x = x
+        held.y = y
+        held.visible = true
         held = noone
     }
 }

@@ -27,20 +27,29 @@
             <kind>1</kind>
             <string>globalvar player1;
 globalvar drone1;
+globalvar control;
 
 player1 = 0
 drone1 = 0
-
-menu_height = tile_size * 4
-display_set_gui_maximise(2, 2, 0, 0)
-
-gui_translate_x = ds_stack_create()
-gui_translate_y = ds_stack_create()
-
-ds_stack_push(gui_translate_x, 0)
-ds_stack_push(gui_translate_y, 0)
+control = id
 
 //Initialize element properties...
+gui1_x = 0
+gui1_y = view_hview - tile_size * 4
+gui1_w = view_wview / 2
+gui1_h = tile_size * 4
+
+gui2_x = view_wview / 2
+gui2_y = view_hview - tile_size * 4
+gui2_w = view_wview / 2
+gui2_h = tile_size * 4
+
+p1_isEditing = false
+p1_drone = noone
+p1_editing_x = 0
+p1_editing_y = 0
+p1_held_x = gui1_x + gui1_w / 2 - tile_size / 2
+p1_held_y = gui1_y
 
 
 </string>
@@ -48,7 +57,7 @@ ds_stack_push(gui_translate_y, 0)
         </arguments>
       </action>
     </event>
-    <event eventtype="8" enumb="64">
+    <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -65,66 +74,97 @@ ds_stack_push(gui_translate_y, 0)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>x = 0
-y = 0
+            <string>var xx;
+var yy;
+if (p1_isEditing) {
+    var l = array_length_1d(p1_drone.logic)
+    xx = gui1_x + (gui1_w / 2) - (l * tile_size) / 2
+    yy = gui1_y + tile_size
+}
+else {
+    if (p1_drone &gt; 0) {
+        var l = array_length_1d(p1_drone.logic)
+        xx = gui1_x - (l + 1) * tile_size / 2
+        yy = gui1_y + tile_size
+    }
+    xx = gui1_x - tile_size * 2
+    yy = gui1_y + tile_size
+}
+p1_editing_x += (xx - p1_editing_x) / 4
+p1_editing_y += (yy - p1_editing_y) / 4
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>var empty_sprite = asset_get_index("spr_empty")
 
-var empty_sprite = asset_get_index("spr_empty")
-var size = 16
-var w_start = view_wview / 2
-var y_start = view_hview - menu_height
-
-x = 0
-y = y_start
 draw_set_colour(c_black)
-draw_rectangle(x, y, x + view_wview, y + menu_height, false)
+draw_rectangle(gui1_x, gui1_y, gui1_x + gui1_w, gui1_y + gui1_h, false)
 
 
+x = p1_held_x
+y = p1_held_y
 if (player1.held &gt; 0) {
-if (player1.held.type == "logic") {
-    x = (w_start / 2) - (tile_size / 2)
-    y = y_start
-    player1.held.xx = x
-    player1.held.yy = y
-}
-if (player1.held.type == "action") {
-    x = (w_start / 2) - (tile_size / 2)
-    y = y_start + tile_size * 3
-    player1.held.xx = x
-    player1.held.yy = y
-}
-}
-
-if (player1.editing &gt; 0) {
-    y = y_start + tile_size
-
-l = array_length_1d(player1.editing.logic)
-x = (w_start / 2) - (l * tile_size / 2)
-
-i = 0        
-while (i &lt; l) {
-    draw_sprite(empty_sprite, 0, x, y);
-    if (player1.editing.logic[i] &gt; 0) {
-        player1.editing.logic[i].xx = x
-        player1.editing.logic[i].yy = y
+    if (player1.held.type == "logic") {
+        draw_sprite(player1.held.sprite_index, 0, x, y)
     }
-    x += size
-    i += 1
-}
-          
-l = array_length_1d(player1.editing.action)
-x = (w_start / 2) - (l * tile_size / 2)
-y += size
-    
-i = 0
-while (i &lt; l) {
-    draw_sprite(empty_sprite, 0, x, y);
-    if (player1.editing.action[i] &gt; 0) {
-        player1.editing.action[i].xx = x
-        player1.editing.action[i].yy = y    
+    if (player1.held.type == "action") {
+        draw_sprite(player1.held.sprite_index, 0, x, y + 3 * tile_size)
     }
-    x += size
-    i += 1
 }
+
+x = p1_editing_x
+y = p1_editing_y
+
+if (p1_drone &gt; 0) {
+    i = 0
+    l = array_length_1d(p1_drone.logic)        
+    while (i &lt; l) {
+        if (p1_drone.logic[i] &gt; 0) {
+            draw_sprite(p1_drone.logic[i].sprite_index, 0, x, y)   
+        }
+        else {
+            draw_sprite(empty_sprite, 0, x, y)
+        }
+        x += tile_size
+        i += 1
+    }
+}
+
+x = p1_editing_x
+y += tile_size
+
+if (p1_drone &gt; 0) {
+    i = 0
+    l = array_length_1d(p1_drone.action)
+    while (i &lt; l) {
+        if (p1_drone.action[i] &gt; 0) {
+            draw_sprite(p1_drone.action[i].sprite_index, 0, x, y)   
+        }
+        else {
+            draw_sprite(empty_sprite, 0, x, y)
+        }
+        x += tile_size
+        i += 1
+    }
 }
 </string>
           </argument>
