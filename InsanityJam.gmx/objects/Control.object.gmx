@@ -44,7 +44,6 @@ gui2_y = view_hview - tile_size * 4
 gui2_w = view_wview / 2
 gui2_h = tile_size * 4
 
-p1_is_editing = false
 p1_drone = noone
 p1_editing_x = 0
 p1_editing_y = 0
@@ -76,19 +75,23 @@ p1_held_y = gui1_y
             <kind>1</kind>
             <string>var xx;
 var yy;
-if (p1_is_editing) {
+if (player1.editing &gt; 0) {
     var l = ds_list_size(p1_drone.logic)
-    xx = gui1_x + (gui1_w / 2) - (l * tile_size) / 2
+    var i = player1.editing_index % l
+    xx = gui1_x + (gui1_w / 2) - (i * tile_size) - (tile_size / 2)
     yy = gui1_y + tile_size
 }
 else {
     if (p1_drone &gt; 0) {
         var l = ds_list_size(p1_drone.logic)
-        xx = gui1_x - (l + 1) * tile_size / 2
+        trace(l)
+        xx = gui1_x - (l + 1) * tile_size
         yy = gui1_y + tile_size
     }
-    xx = gui1_x - tile_size * 2
-    yy = gui1_y + tile_size
+    else {
+        xx = gui1_x - tile_size * 2
+        yy = gui1_y + tile_size
+    }
 }
 p1_editing_x += (xx - p1_editing_x) / 4
 p1_editing_y += (yy - p1_editing_y) / 4

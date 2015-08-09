@@ -30,10 +30,10 @@ moving = false
 
 logic = ds_list_create()
 action = ds_list_create()
-next_index = 0
 
 move_speed = 2
 direction = 0
+next_index = 0
 
 xx = x
 yy = y
@@ -80,18 +80,18 @@ if (y == yy &amp;&amp; x == xx) {
 
 // If completed action and not in sight of player, take next action
 if (!moving) {
-   var c = tile_size / 2
-   if (collision_line(x + c, y + c, player.x + c, player.y + c, Wall, false, true)) {
-      if (ds_list_find_value(logic, next_index) != noone &amp;&amp; ds_list_find_value(action, next_index) != noone) {
-         if (script_execute(ds_list_find_value(logic, next_index).code)) {
-            script_execute(ds_list_find_value(action, next_index).code)
-         }
-      }
-      next_index += 1
-      if (next_index &gt;= ds_list_size(logic)) {
-         next_index = 0
-      }
-   }
+    var c = tile_size / 2
+    if (collision_line(x + c, y + c, player.x + c, player.y + c, Wall, false, true)) {
+        if (ds_list_find_value(logic, next_index) &gt; 0 &amp;&amp; ds_list_find_value(action, next_index) &gt; 0) {
+            if (script_execute(ds_list_find_value(logic, next_index).code)) {
+                script_execute(ds_list_find_value(action, next_index).code)
+            }
+        }
+        next_index += 1
+        if (next_index &gt;= ds_list_size(logic)) {
+            next_index = 0
+        }
+    }
 }
 </string>
           </argument>

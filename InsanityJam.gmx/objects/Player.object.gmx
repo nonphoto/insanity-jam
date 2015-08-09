@@ -32,6 +32,7 @@ move_speed = 2
 held = noone
 moving = false
 editing = noone
+editing_index = 0
 
 image_speed = .1
 
@@ -209,10 +210,39 @@ if (keyboard_check(vk_down) &amp;&amp; !moving &amp;&amp; editing &lt;= 0 &amp;&
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (editing &amp;&amp; (held &lt;= 0 || ds_list_find_value(editing.action, 0) &lt;= 0)) {
-    var temp = ds_list_find_value(editing.action, 0);
-    ds_list_replace(editing.action, 0, held)
-    held = temp;
+            <string>if (editing &gt; 0) {
+    var l = ds_list_size(editing.action)
+    var i = editing_index % l
+    if (held &lt;= 0 || ds_list_find_value(editing.action, i) &lt;= 0) {
+        var temp = ds_list_find_value(editing.action, i);
+        ds_list_replace(editing.action, i, held)
+        held = temp;
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="39">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (editing &gt; 0) {
+    editing_index += 1
 }
 </string>
           </argument>
@@ -236,10 +266,39 @@ if (keyboard_check(vk_down) &amp;&amp; !moving &amp;&amp; editing &lt;= 0 &amp;&
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (editing &gt; 0 &amp;&amp; (held &lt;= 0 || ds_list_find_value(editing.logic, 0) &lt;= 0)) {
-    var temp = ds_list_find_value(editing.logic, 0);
-    ds_list_replace(editing.logic, 0, held);
-    held = temp;
+            <string>if (editing &gt; 0) {
+    var l = ds_list_size(editing.logic)
+    var i = editing_index % l
+    if (held &lt;= 0 || ds_list_find_value(editing.logic, i) &lt;= 0) {
+        var temp = ds_list_find_value(editing.logic, i);
+        ds_list_replace(editing.logic, i , held);
+        held = temp;
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="37">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (editing &gt; 0) {
+    editing_index -= 1
 }
 </string>
           </argument>
@@ -263,10 +322,10 @@ if (keyboard_check(vk_down) &amp;&amp; !moving &amp;&amp; editing &lt;= 0 &amp;&
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (held == noone) {
+            <string>if (held &lt;= 0) {
     // Picking up items
     var obj = instance_place(x, y, Code)
-    if (obj != noone &amp;&amp; obj.visible = true) {
+    if (obj != noone &amp;&amp; obj.visible == true) {
         held = obj
         held.visible = false
     }
