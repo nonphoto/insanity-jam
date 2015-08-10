@@ -299,11 +299,7 @@ if (pressed_enter &amp;&amp; !moving) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (moving == false) {
-
-} 
-
-pressed_enter = true 
+            <string>pressed_enter = true 
 </string>
           </argument>
         </arguments>

@@ -84,7 +84,6 @@ if (player1.editing &gt; 0) {
 else {
     if (p1_drone &gt; 0) {
         var l = ds_list_size(p1_drone.logic)
-        trace(l)
         xx = gui1_x - (l + 1) * tile_size
         yy = gui1_y + tile_size
     }
