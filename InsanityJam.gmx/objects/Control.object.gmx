@@ -27,10 +27,14 @@
             <kind>1</kind>
             <string>globalvar player1;
 globalvar drone1;
+globalvar player2;
+globalvar drone2;
 globalvar control;
 
 player1 = 0
 drone1 = 0
+player2 = 0
+drone2 = 0
 control = id
 
 //Initialize element properties...

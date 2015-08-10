@@ -276,6 +276,8 @@
     <instance objName="Wall" x="0" y="0" name="inst_B4B6A01E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="Logic_Blocked" x="240" y="176" name="inst_75A1F1AF" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="Turn_Left" x="256" y="192" name="inst_F41B6CE7" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="P2Spawn" x="240" y="80" name="inst_1608C05A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="D2Spawn" x="256" y="128" name="inst_4A94DF60" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="background0" x="160" y="192" w="16" h="16" xo="16" yo="0" id="10000001" name="inst_0A5D7249" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>

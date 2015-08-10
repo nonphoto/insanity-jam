@@ -61,6 +61,8 @@
     <object>objects\Control</object>
     <object>objects\P1Spawn</object>
     <object>objects\D1Spawn</object>
+    <object>objects\P2Spawn</object>
+    <object>objects\D2Spawn</object>
   </objects>
   <timelines name="timelines">
     <timeline>timelines\timeline0</timeline>

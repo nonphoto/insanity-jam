@@ -28,12 +28,18 @@
             <string>drone = false
 player_number = 0
 
+key_up = 0
+key_down = 0
+key_left = 0
+key_right = 0
+key_select = 0
+
 move_speed = 2
 held = noone
 moving = false
 editing = noone
 editing_index = 0
-pressed_enter = false
+pressed_select = false
 
 image_speed = .1
 
@@ -79,34 +85,17 @@ if (yy &gt; y) {
 if (y == yy &amp;&amp; x == xx) {
     moving = false
 }
+
 // Animation
-if(moving == true){
+if(moving){
         image_speed = .5
 }
 else{
         image_speed = .1
 }
 
-// Check keyboard
-if (keyboard_check(vk_left) &amp;&amp; !moving &amp;&amp; editing &lt;= 0 &amp;&amp; place_free(x - tile_size, y)) {
-    moving = true
-    xx -= tile_size
-    sprite_index = spr_left
-}
-if (keyboard_check(vk_right) &amp;&amp; !moving &amp;&amp; editing &lt;= 0 &amp;&amp; place_free(x + tile_size, y)) {
-    moving = true
-    xx += tile_size
-    sprite_index = spr_right
-}
-if (keyboard_check(vk_up) &amp;&amp; !moving &amp;&amp; editing &lt;= 0 &amp;&amp; place_free(x, y - tile_size)) {
-    moving = true
-    yy -= tile_size
-}
-if (keyboard_check(vk_down) &amp;&amp; !moving &amp;&amp; editing &lt;= 0 &amp;&amp; place_free(x, y + tile_size)) {
-    moving = true
-    yy += tile_size
-}
-if (pressed_enter &amp;&amp; !moving) {
+// Select
+if (pressed_select &amp;&amp; !moving) {
     var other_drone = instance_place(x, y, Drone)
     var other_code = instance_place(x, y, Code)
     if (editing &gt; 0) {
@@ -139,7 +128,66 @@ if (pressed_enter &amp;&amp; !moving) {
         held.visible = false
     }
     
-    pressed_enter = false
+    pressed_select = false
+}
+
+// Check keyboard
+
+// Left
+if (keyboard_check(key_left) &amp;&amp; editing &lt;= 0 &amp;&amp; !moving &amp;&amp; place_free(x - tile_size, y)) {
+    moving = true
+    xx -= tile_size
+    sprite_index = spr_left
+}
+if (keyboard_check_pressed(key_left) &amp;&amp; editing &gt; 0) {
+    editing_index -= 1
+    editing_index = abs(editing_index)
+}
+
+// Right
+if (keyboard_check(key_right) &amp;&amp; editing &lt;= 0 &amp;&amp; !moving &amp;&amp; place_free(x + tile_size, y)) {
+    moving = true
+    xx += tile_size
+    sprite_index = spr_right
+}
+if (keyboard_check_pressed(key_right) &amp;&amp; editing &gt; 0) {
+    editing_index += 1
+    editing_index = abs(editing_index)
+}
+
+// Up
+if (keyboard_check(key_up) &amp;&amp; editing &lt;= 0 &amp;&amp; !moving &amp;&amp; place_free(x, y - tile_size)) {
+    moving = true
+    yy -= tile_size
+}
+if (keyboard_check_pressed(key_up) &amp;&amp; editing &gt; 0) {
+    var l = ds_list_size(editing.logic)
+    var i = editing_index % l
+    if (held &lt;= 0 || ds_list_find_value(editing.logic, i) &lt;= 0) {
+        var temp = ds_list_find_value(editing.logic, i);
+        ds_list_replace(editing.logic, i , held);
+        held = temp;
+    }
+}
+
+// Down
+if (keyboard_check(key_down) &amp;&amp; editing &lt;= 0 &amp;&amp; !moving &amp;&amp; place_free(x, y + tile_size)) {
+    moving = true
+    yy += tile_size
+}
+if (keyboard_check_pressed(key_down) &amp;&amp; editing &gt; 0) {
+    var l = ds_list_size(editing.action)
+    var i = editing_index % l
+    if (held &lt;= 0 || ds_list_find_value(editing.action, i) &lt;= 0) {
+        var temp = ds_list_find_value(editing.action, i);
+        ds_list_replace(editing.action, i, held)
+        held = temp;
+    }
+}
+
+// Select
+if (keyboard_check_pressed(key_select)) {
+    pressed_select = true
 }
 </string>
           </argument>
@@ -164,143 +212,6 @@ if (pressed_enter &amp;&amp; !moving) {
           <argument>
             <kind>1</kind>
             <string></string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="9" enumb="40">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if (editing &gt; 0) {
-    var l = ds_list_size(editing.action)
-    var i = editing_index % l
-    if (held &lt;= 0 || ds_list_find_value(editing.action, i) &lt;= 0) {
-        var temp = ds_list_find_value(editing.action, i);
-        ds_list_replace(editing.action, i, held)
-        held = temp;
-    }
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="9" enumb="39">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if (editing &gt; 0) {
-    editing_index += 1
-    editing_index = abs(editing_index)
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="9" enumb="38">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if (editing &gt; 0) {
-    var l = ds_list_size(editing.logic)
-    var i = editing_index % l
-    if (held &lt;= 0 || ds_list_find_value(editing.logic, i) &lt;= 0) {
-        var temp = ds_list_find_value(editing.logic, i);
-        ds_list_replace(editing.logic, i , held);
-        held = temp;
-    }
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="9" enumb="37">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if (editing &gt; 0) {
-    editing_index -= 1
-    editing_index = abs(editing_index)
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="9" enumb="13">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>pressed_enter = true 
-</string>
           </argument>
         </arguments>
       </action>
