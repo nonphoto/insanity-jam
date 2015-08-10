@@ -33,6 +33,7 @@ held = noone
 moving = false
 editing = noone
 editing_index = 0
+pressed_enter = false
 
 image_speed = .1
 
@@ -105,58 +106,18 @@ if (keyboard_check(vk_down) &amp;&amp; !moving &amp;&amp; editing &lt;= 0 &amp;&
     moving = true
     yy += tile_size
 }
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="4" ename="Code">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string></string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="4" ename="Drone">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if (keyboard_check_pressed(vk_enter)){
+if (pressed_enter &amp;&amp; !moving) {
+    var other_drone = instance_place(x, y, Drone)
+    var other_code = instance_place(x, y, Code)
     if (editing &gt; 0) {
+        // End editing
         editing = noone
         event_perform(ev_user1, 0)
         player_end_edit()
     }
-    else {
-        editing = other.id
+    else if (other_drone &gt; 0) {
+        // Start editing
+        editing = other_drone.id
         var l = ds_list_size(editing.logic);
         if (ds_list_find_value(editing.logic, l - 1) != 0 || ds_list_find_value(editing.action, l - 1) != 0) {
             ds_list_insert(editing.logic, l, 0);
@@ -165,6 +126,20 @@ if (keyboard_check(vk_down) &amp;&amp; !moving &amp;&amp; editing &lt;= 0 &amp;&
         event_perform(ev_user0, 0);
         player_start_edit()
     }
+    else if (held &gt; 0) {
+        // Drop item
+        held.x = x
+        held.y = y
+        held.visible = true
+        held = noone
+    }
+    else if (other_code &gt; 0 &amp;&amp; other_code.visible == true) {
+        // Pick up item
+        held = other_code
+        held.visible = false
+    }
+    
+    pressed_enter = false
 }
 </string>
           </argument>
@@ -245,7 +220,6 @@ if (keyboard_check(vk_down) &amp;&amp; !moving &amp;&amp; editing &lt;= 0 &amp;&
     editing_index += 1
     editing_index = abs(editing_index)
 }
-trace(editing_index)
 </string>
           </argument>
         </arguments>
@@ -303,7 +277,6 @@ trace(editing_index)
     editing_index -= 1
     editing_index = abs(editing_index)
 }
-trace(editing_index)
 </string>
           </argument>
         </arguments>
@@ -326,25 +299,11 @@ trace(editing_index)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (held &lt;= 0) {
-    // Picking up items
-    var obj = instance_place(x, y, Code)
-    if (obj != noone &amp;&amp; obj.visible == true) {
-        held = obj
-        held.visible = false
-    }
-}
-else {
-    // Dropping items
-    var obj = instance_place(x, y, Drone)
-    if (obj == noone) {
-        held.x = x
-        held.y = y
-        held.visible = true
-        held = noone
-    }
-}
-    
+            <string>if (moving == false) {
+
+} 
+
+pressed_enter = true 
 </string>
           </argument>
         </arguments>
