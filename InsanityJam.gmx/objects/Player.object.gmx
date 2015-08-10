@@ -243,7 +243,9 @@ if (keyboard_check(vk_down) &amp;&amp; !moving &amp;&amp; editing &lt;= 0 &amp;&
             <kind>1</kind>
             <string>if (editing &gt; 0) {
     editing_index += 1
+    editing_index = abs(editing_index)
 }
+trace(editing_index)
 </string>
           </argument>
         </arguments>
@@ -299,7 +301,9 @@ if (keyboard_check(vk_down) &amp;&amp; !moving &amp;&amp; editing &lt;= 0 &amp;&
             <kind>1</kind>
             <string>if (editing &gt; 0) {
     editing_index -= 1
+    editing_index = abs(editing_index)
 }
+trace(editing_index)
 </string>
           </argument>
         </arguments>
